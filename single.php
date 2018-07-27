@@ -1,5 +1,5 @@
 <?php get_header(); ?>
-    
+<div id="under_header">
     <div id="content" class="clear">
         <main role="main" id="primary">
             <section>
@@ -70,5 +70,6 @@
         </main>
 
         <?php if ($toc_post) get_sidebar(); ?>
-    </div> <!--end of #content-->
-<?php get_footer(); ?>
+    </div> <!--end of #content-->   
+    <?php get_footer(); ?>
+</div> <!--end of #under_header-->
