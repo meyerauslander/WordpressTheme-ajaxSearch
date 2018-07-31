@@ -5,6 +5,8 @@ define('MAUS_BEFORE_PHRASE',20);
 define('MAUS_AFTER_PHRASE',80);
 define('MAUS_MAX_LENGTH',500);
 define('MAUS_TEXT_DOMAIN','mysearch');
+define('MAUS_NONSEARCH_WORDS','and,or,on,for,in,;,this,that,of,\/,&,a,i');
+
 
 /* include category selection functionality and classes needed for custom search output */
 require(get_template_directory() . '/category_select/categorySelect.php');
@@ -30,27 +32,8 @@ function mysearch_the_custom_logo() {
 
 // Localization Support as of now there is no need for it.  If it becomes applicable call load_theme_textdomain()
 add_theme_support( 'custom-logo' ); //allow the user to choose a logo 
-//
-//function themename_custom_logo_setup() {
-//    $defaults = array(
-//        'height'      => 100,
-//        'width'       => 400,
-//        'flex-height' => true,
-//        'flex-width'  => true,
-//        'header-text' => array( 'site-title', 'site-description' ),
-//    );
-//    add_theme_support( 'custom-logo', $defaults );
-//}
-//add_action( 'after_setup_theme', 'themename_custom_logo_setup' );
  
 function mysearch_customize_register( $wp_customize ) {
-    
-//    If they want this infomoration in it's own section    
-//    $wp_customize->add_section( 'mysearch_company_section' , array(
-//        'title'      => __( 'Additional Company Info', 'mysearch' ),
-//        'priority'   => 30,
-//    ));
-    
     
     $wp_customize->add_setting( 'mysearch_company-name', array());
     $wp_customize->add_control( new WP_Customize_Control(

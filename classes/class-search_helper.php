@@ -2,6 +2,12 @@
 
 //static class containing function that aid in producing the custom search output
 class maus_search_helper{
+    private $nonsearch_words = array();
+    
+    //initialize any variables that only need to be set only one time per search results display
+    public function __construct(){
+        $this->nonsearch_words =  explode(",",MAUS_NONSEARCH_WORDS);
+    }
     
     //used to prepare the search term (obtained by the _GET array) for pregmatch()
     public static function escape_url_phrase(&$search_phrase){
@@ -10,12 +16,24 @@ class maus_search_helper{
         $search_phrase = preg_quote($search_phrase, '/'); //escape it for use in preg_match   
     }
     
+    //used to check if this word should highlighted when it appears by itself
+    public function is_nonsearch_word($testword){
+        $isit = false;
+        foreach ($this->nonsearch_words as $word){
+            if (preg_match("/$word/i", $testword)){
+                $isit=true;
+                break;
+            }
+        }
+        return $isit;
+    }
+    
     /*
     Return an array of one or two search exressions based on a search phrsae
     This functions assumes it's already been url decoded and html-entity replaced
     and escaped from regex special characters using '\' (see escape_url_phrase())
     */
-    public static function get_search_expressions($search_phrase){
+    public function get_search_expressions($search_phrase){
         $multiple_word = false;
         $return_expressions = array();
         if (preg_match("/\s/", $search_phrase)){
@@ -24,8 +42,7 @@ class maus_search_helper{
             $search_expression = "/(";
             $full_search_expression = "/($search_phrase|"; // needed when highlighting all matched at once
             foreach ($search_phrase_array as $search_word){ 
-                if ( !preg_match("/or/i", $search_word) && !preg_match("/and/i", $search_word) && 
-                     !preg_match("/;/i", $search_word) ) { //exclude non-key words and trouble making characters
+                if ( !$this->is_nonsearch_word($search_word) ) { //exclude non-search words
                     $search_expression .= $search_word . "|";
                     $full_search_expression .= $search_word . "|";
                 } 

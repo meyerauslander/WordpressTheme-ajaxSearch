@@ -13,9 +13,10 @@
                             <?php
                                 $multiple_word = false;  //default of single word search phrase
                                 $search_expressions = array();
+                                $searchinfo = new maus_search_helper();
                                 $search_phrase = $_GET['s'];
                                 maus_search_helper::escape_url_phrase($search_phrase);      
-                                $search_expressions = maus_search_helper::get_search_expressions($search_phrase); //get all required regex search expressions 
+                                $search_expressions = $searchinfo->get_search_expressions($search_phrase); //get all required regex search expressions 
                                 $title_text = the_title('','',false); 
                                // echo $title_text . "<br>";
                                 $title_text = html_entity_decode($title_text);
