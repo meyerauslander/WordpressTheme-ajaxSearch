@@ -8,8 +8,10 @@ Download this repo as a zip and install like any other WP Theme
 1.  Avtivate the theme.
 2.  Choose your category images:  Go to the 'posts' menu in the admin and select 'category'.  Click the 'edit' link for the catogory to which you want to add a custom image (Hover the mouse near the category name in the table on the right side of the page).   
 # Usage
-* (Category image selection)
+* Category image selection
     * Follow the directions in setup.
+* Company Logo, Name, and Division Selection
+    * Go to the 'Appearance' menu in the admin and select 'customize'.  Click the 'Site Identity' menu.  Key in company information.  Then select your company logo (if you want it to display).  Click 'Publish'.  
 # Important information needed in order to add custom stying
     see programming_notes.txt (not yet written)
 # Contributing

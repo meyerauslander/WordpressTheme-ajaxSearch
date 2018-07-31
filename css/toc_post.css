@@ -1,0 +1,9 @@
+#primary { /* The primary section of the page */
+    width: 70%;
+    float: left;
+}
+
+.sidebar {
+    float: right;
+    width: 25%;
+}

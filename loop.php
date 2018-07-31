@@ -17,7 +17,8 @@
                                 maus_search_helper::escape_url_phrase($search_phrase);      
                                 $search_expressions = maus_search_helper::get_search_expressions($search_phrase); //get all required regex search expressions 
                                 $title_text = the_title('','',false); 
-
+                               // echo $title_text . "<br>";
+                                $title_text = html_entity_decode($title_text);
                                 //highlight the searched for text in the title
                                 $title_text = preg_replace(end($search_expressions), '<span class="text-highlight">$1</span>', $title_text);
                                 echo "<p class='alignleft'>$title_text</p>"; 
@@ -40,7 +41,8 @@
                         $multiple_word = false;  //default of single word search phrase      
                         if (count($search_expressions) > 1) $multiple_word = true;
                         $content = wp_strip_all_tags( get_the_content() );
-
+                        $content = html_entity_decode($content);
+            
                         // find all the matched in the content
                         preg_match_all("/($search_phrase)/i", $content, $matches1, PREG_OFFSET_CAPTURE); //best matches
                         if ($multiple_word) {

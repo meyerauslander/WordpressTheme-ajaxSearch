@@ -6,10 +6,10 @@ class maus_search_helper{
     //used to prepare the search term (obtained by the _GET array) for pregmatch()
     public static function escape_url_phrase(&$search_phrase){
         $search_phrase = urldecode($search_phrase);  //convert url encodings to their normal character vaules
-        $search_phrase = htmlentities($search_phrase); // for example for & character
+        //$search_phrase = htmlentities($search_phrase); // for example for & character
         $search_phrase = preg_quote($search_phrase, '/'); //escape it for use in preg_match   
     }
-
+    
     /*
     Return an array of one or two search exressions based on a search phrsae
     This functions assumes it's already been url decoded and html-entity replaced

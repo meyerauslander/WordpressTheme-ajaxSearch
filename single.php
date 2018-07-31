@@ -5,19 +5,11 @@
             <section>
                 <?php if (have_posts()): while (have_posts()) : the_post(); 
                     $toc_post = tstn_toc_widget::is_toc_post();
-                    if ($toc_post){  //output style to activate the side bar 
-                            echo "<style>   
-                                    #primary { /* The primary section of the page */
-                                        width: 70%;
-                                        float: left;
-                                    }
-                                    .sidebar {
-                                        float: right;
-                                        width: 25%;
-                                    }
-                                  </style>
-                            ";
-                        }
+                    if ($toc_post){  //output style to activate the side bar
+                        //enquing here because it must be done in the loop
+                        wp_register_style('toc-page', get_template_directory_uri() . '/css/toc_post.css', array(), '1.0', 'all');
+                        wp_enqueue_style('toc-page'); // Enqueue it!
+                    }
                 ?>
                     <!-- article -->
                     <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>

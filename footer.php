@@ -3,7 +3,7 @@
 
 				<!-- copyright -->
 				<p class="copyright">
-					&copy; <?php echo date('Y'); ?> Copyright <?php bloginfo('name'); ?>.
+					&copy;  Copyright <?php echo ' ' . date('Y'); ?> <?php echo ' ' . get_theme_mod( "mysearch_company-name" ) ?>.
 				</p>
 				<!-- /copyright -->
 

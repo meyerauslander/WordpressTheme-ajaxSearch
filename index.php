@@ -32,7 +32,11 @@
                             } else {
                                 echo $category_image = '';
                             }
-                            if ($category->name == reset($categories)->name) echo "<ul class=maus-category-grid>";
+                            if ($category->name == reset($categories)->name) {
+                                ?>
+                                <ul class=maus-category-grid>
+                                <?php
+                            }
                             ?> 
                             <li class='maus-general'>
                                 <?php 
@@ -44,7 +48,11 @@
                                 ?>
                             </li>
                             <?php
-                            if ($category->name == end($categories)->name) echo "</ul>";
+                            if ($category->name == end($categories)->name){
+                                ?>
+                                </ul>
+                                <?php
+                            }
                         }
                     ?>
                 </div>

@@ -15,7 +15,74 @@ require(get_template_directory() . '/classes/class-excerpts.php');
 	Theme Support
 \*------------------------------------*/
 
+function mysearch_the_custom_logo() {
+    if ( function_exists( 'the_custom_logo' ) ) {
+        $custom_logo_id = get_theme_mod( 'custom_logo' );
+        if ( $custom_logo_id ) {
+            the_custom_logo();
+        } else { //output the company name and the company division ?>
+            <span class="company-name"> <?php echo get_theme_mod( "mysearch_company-name" ) . " "; ?> </span>
+            <span class="company-division"><?php echo get_theme_mod( "mysearch_company-division" ); ?></span>
+            <?php
+        }   
+    }
+}
+
 // Localization Support as of now there is no need for it.  If it becomes applicable call load_theme_textdomain()
+add_theme_support( 'custom-logo' ); //allow the user to choose a logo 
+//
+//function themename_custom_logo_setup() {
+//    $defaults = array(
+//        'height'      => 100,
+//        'width'       => 400,
+//        'flex-height' => true,
+//        'flex-width'  => true,
+//        'header-text' => array( 'site-title', 'site-description' ),
+//    );
+//    add_theme_support( 'custom-logo', $defaults );
+//}
+//add_action( 'after_setup_theme', 'themename_custom_logo_setup' );
+ 
+function mysearch_customize_register( $wp_customize ) {
+    
+//    If they want this infomoration in it's own section    
+//    $wp_customize->add_section( 'mysearch_company_section' , array(
+//        'title'      => __( 'Additional Company Info', 'mysearch' ),
+//        'priority'   => 30,
+//    ));
+    
+    
+    $wp_customize->add_setting( 'mysearch_company-name', array());
+    $wp_customize->add_control( new WP_Customize_Control(
+        $wp_customize,
+        'mysearch_company_control',
+            array(
+                'label'      => __( 'Company Name', MAUS_TEXT_DOMAIN ),
+                'section'    => 'title_tagline',
+                'settings'   => 'mysearch_company-name',
+                'priority'   => 1
+            )
+        )
+    );
+
+    $wp_customize->add_setting( 'mysearch_company-division', array());
+    $wp_customize->add_control( new WP_Customize_Control(
+        $wp_customize,
+        'mysearch_division_control',
+            array(
+                'label'      => __( 'Company Division', MAUS_TEXT_DOMAIN ),
+                'section'    => 'title_tagline',
+                'settings'   => 'mysearch_company-division',
+                'priority'   => 1
+            )
+        )
+    );  
+    
+    // ..repeat ->add_setting() and ->add_control() for mytheme_company-division
+}
+
+add_action( 'customize_register', 'mysearch_customize_register' );
+                                       
 
 
 /*------------------------------------*\
@@ -31,12 +98,31 @@ function mysearch_header_scripts()
     }
 }
 
+// content filter to cause search to be on specifically content and not html entities
+function maus_content_filter( $content ) {
+    $content = html_entity_decode($content);
+    // run your code on $content and
+    return $content;
+}
+add_filter( 'the_content', 'maus_content_filter',999 );
+
 // Load mysearch styles
 function mysearch_styles()
 {
     wp_register_style('mysearch', get_template_directory_uri() . '/style.css', array(), '1.0', 'all');
     wp_enqueue_style('mysearch'); // Enqueue it!
 }
+
+// Load mysearch conditional styles
+//function mysearch_conditional_styles()
+//{
+//    //for pages containting a toc commented out because is_toc_post() requires the loop
+//    if (tstn_toc_widget::is_toc_post() && is_single()) {
+//        wp_register_style('toc-page', get_template_directory_uri() . '/toc_post.css', array(), '1.0', 'all');
+//        wp_enqueue_style('toc-page'); // Enqueue it!
+//    }
+//}
+
 
 // If Dynamic Sidebar Exists -- This creates an option to add widgets to the site: admin-->Appearance-->widgets
 if (function_exists('register_sidebar'))
@@ -88,6 +174,7 @@ function mysearchwp_pagination()
 // Add Actions
 add_action('init', 'mysearch_header_scripts'); // Add Custom Scripts to wp_head 
 add_action('wp_enqueue_scripts', 'mysearch_styles'); // Add Theme Stylesheet
+//add_action('wp_print_scripts', 'mysearch_conditional_styles'); // Add Conditional Page Styles:  not needed yet
 add_action('init', 'mysearchwp_pagination'); // Add our mysearch Pagination
 
 

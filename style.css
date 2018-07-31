@@ -7,24 +7,28 @@ Author URI:
 Version:        1.0.0
 */
 
-/* wordpress alignment styles (from twentysixteen)*/
-.alignleft {
-	float: left;
-/*	margin: 0.375em 1.75em 1.75em 0;*/
+/*theme styles*/
+
+span.go-to-text{
+    font-weight: lighter;
+    color: gray;
 }
 
-.alignright {
-	float: right;
-/*	margin: 0.375em 0 1.75em 1.75em;*/
+.company-name{
+    color: blue;    
 }
 
-.aligncenter {
-	clear: both;
-	display: block;
-/*	margin: 0 auto 1.75em;*/
+.company-division{
+    color: red;
 }
 
-/*child styles*/
+.text-highlight{
+    color:rgb(71,157,236);
+}
+
+.search-entry-content{
+    color:rgb(161,168,192);
+}
 
 /* homepage grid */
 .maus-category-grid li.maus-general a:before {
@@ -84,14 +88,6 @@ and it's background info
     color:rgb(57,72,121);
 }
 
-.text-highlight{
-    color:rgb(71,157,236);
-}
-
-.search-entry-content{
-    color:rgb(161,168,192);
-}
-
 /* The automatic search results are stored in this div*/
 #maus_search_div{
     visibility : hidden;
@@ -114,10 +110,23 @@ and it's background info
     position: relative;
 }
 
-/* this should not be needed if the theme display is already set to full*/
-#maus_search_div #content{
-/*    width: 100%;*/
+/* wordpress alignment styles (from twentysixteen)*/
+.alignleft {
+	float: left;
+/*	margin: 0.375em 1.75em 1.75em 0;*/
 }
+
+.alignright {
+	float: right;
+/*	margin: 0.375em 0 1.75em 1.75em;*/
+}
+
+.aligncenter {
+	clear: both;
+	display: block;
+/*	margin: 0 auto 1.75em;*/
+}
+
 
 /* global box-sizing */
 *,

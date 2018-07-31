@@ -25,11 +25,10 @@
 					<!-- logo -->
 					<div class="logo">
 						<a href="<?php echo home_url(); ?>">
-<!--							<img src="<?php //echo get_template_directory_uri(); ?>/img/logo-50.png" alt="Logo" class="logo-img">-->
-							<img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logo-50.png" alt="Logo" class="logo-img">
-							
+							<?php mysearch_the_custom_logo(); ?>
 						</a>
 					</div>
+					<a class="alignright" href="<?php echo home_url(); ?>"><span class="go-to-text">go to </span>home</a>
 					<!-- /logo -->
 
 
