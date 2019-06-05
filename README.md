@@ -12,8 +12,6 @@ Download this repo as a zip and install like any other WP Theme
     * Follow the directions in setup.
 * Company Logo, Name, and Division Selection
     * Go to the 'Appearance' menu in the admin and select 'customize'.  Click the 'Site Identity' menu.  Key in company information.  Then select your company logo (if you want it to display).  Click 'Publish'.  
-# Important information needed in order to add custom stying
-    see programming_notes.txt (not yet written)
 # Contributing
 1. Fork it (<https://github.com/meyerauslander/WordpressTheme-ajaxSearch/fork>)
 2. Create your feature branch (`git checkout -b feature/fooBar`)
